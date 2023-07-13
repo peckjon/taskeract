@@ -17,6 +17,7 @@ LABEL_COLORS = {
     'stakeholder': 'A34100',
     'dri': 'D49E58'
 }
+# Always include a trailing space after PREFIX:
 LABEL_PREFIXES = {
     'date': 'DATE: ',
     'topic': 'TOPIC: ',
