@@ -6,9 +6,9 @@ This sample repo contains issue templates for three types of tasks ("generic", "
 
 ## What the automation does
 
-- assigns newly-created issues to project boards (optional)
 - adds labels to issues based on the following predefined fields: `date`, `topic`, `product`, `region`, `stakeholders`
-- notifies supervisors (or whoever you want to triage your issues) based on the issue's `region` field
+- (optional) assigns newly-created issues to project boards and sets field values
+- (optional) notifies supervisors (or whoever you want to triage your issues) based on the issue's `region` field
   - you can change the assignments to be based on a different field, such as `product`, by editing `notify_supervisors` and `SUPERVISORS_BY_REGION` inside `.github/workflows/taskeract/utils.py`
 - adds a "DRI" field to the **_body_** of the issue
   - this field does not appear until **_after_** the issue has been created, because the people _requesting_ the work should not necessarily _assign_ the work
