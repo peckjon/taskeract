@@ -1,0 +1,21 @@
+on:
+  issues:
+    types:
+      - reopened
+
+name: Process reopening of issues labelled with "TASK" prefix
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  handle-issue-reopened:
+    if: "${{ contains(github.event.issue.labels.*.name, 'TASK: ') }}"
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - name: Unlabel reopened issues
+      uses: andymckay/labeler@1.0.4
+      with:
+        remove-labels: "not planned"

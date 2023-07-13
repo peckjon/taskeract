@@ -1,0 +1,22 @@
+[
+  {
+    "field": "Desired Publication Date",
+    "variable": "date"
+  },
+  {
+    "field": "What topics will be covered?",
+    "variable": "topic"
+  },
+  {
+    "field": "What product(s) does this cover?",
+    "variable": "product"
+  },
+  {
+    "field": "Region(s)",
+    "variable": "region"
+  },
+  {
+    "field": "What team(s) is this request coming from / does it affect?",
+    "variable": "stakeholder"
+  }
+]

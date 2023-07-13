@@ -1,0 +1,55 @@
+on:
+  issues:
+    types:
+      - opened
+
+name: Process creation of issues labelled with "TASK" prefix
+
+jobs:
+  handle-issue-created:
+    if: "${{ contains(github.event.issue.labels.*.name, 'TASK: ') }}"
+    runs-on: ubuntu-latest
+    defaults:
+      run: 
+        working-directory: .github/workflows
+    env:
+      REPOSITORY_NAME: 'peckjon/taskeract'
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v3
+    # set up Python, install packages (or restore cached as per https://github.com/actions/setup-python/pull/418)
+    - name: Set up Python3
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Restore cached python dependencies
+      uses: actions/cache@v3.2.5
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ env.pythonLocation }}-${{ hashFiles('taskeract/utils.py') }}-${{ hashFiles('taskeract/requirements.txt') }}
+    - name: Install Python packages
+      run: pip install -r taskeract/requirements.txt
+    # process issue
+    - name: Process issue
+      run: python taskeract/issue_created.py
+    # log issue data
+    - name: show env
+      run: echo $ISSUE_DATA
+    # add to project and set project fields
+    - name: Add 'blogpost' issues to the Taskeract sample project
+      if: "${{ contains(github.event.issue.labels.*.name, 'TASK: blogpost') }}"
+      uses: actions/add-to-project@main
+      id: add-to-project-blogpost
+      with:
+        project-url: "https://github.com/users/peckjon/projects/3"
+        github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+    - name: Set 'Status' field for 'blogpost' issues on Taskeract sample project
+      if: "${{ contains(github.event.issue.labels.*.name, 'TASK: blogpost') }}"
+      uses: titoportas/update-project-fields@v0.1.0
+      with:
+        project-url: 'https://github.com/users/peckjon/projects/3'
+        github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+        item-id: ${{ steps.add-to-project-blogpost.outputs.itemId }}
+        field-keys: 'Status'
+        field-values: 'Todo'

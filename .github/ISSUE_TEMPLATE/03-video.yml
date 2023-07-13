@@ -1,0 +1,101 @@
+name: "Request a video"
+description: "Ask the team to produce a video"
+title: "Video Request"
+labels: ["TASK: video"]
+assignees: []
+body:
+  - type: input
+    id: description
+    attributes:
+      label: "Description"
+    validations:
+      required: true
+  - type: input
+    id: target_date
+    attributes:
+      label: "Target Production Date"
+      description: "This should be written as YYYY-MM-DD"
+      placeholder: "2023-12-31"
+    validations:
+      required: true
+  - type: checkboxes
+    id: region
+    attributes:
+      label: "Region(s)"
+      options:
+        - label: "Global (not region specific)"
+        - label: "AMER"
+        - label: "APAC"
+        - label: "EMEA"
+    validations:
+      required: true
+  - type: checkboxes
+    id: platform
+    attributes:
+      label: "Platform(s)"
+      options:
+        - label: "LinkedIn"
+        - label: "TikTok"
+        - label: "Twitter"
+        - label: "YouTube"
+        - label: "Other (describe below)"
+  - type: input
+    id: platform_other
+    attributes:
+      label: "Platform (other)"
+  - type: input
+    id: location
+    attributes:
+      label: "Specific location for creation of content, if any (e.g. customer HQ in city, state)"
+    validations:
+      required: false
+  - type: checkboxes
+    id: stakeholders
+    attributes:
+      label: "What team(s) is this request coming from / does it affect?"
+      options:
+        - label: "This team (internally generated)"
+        - label: "Sales"
+        - label: "Marketing"
+        - label: "Product"
+        - label: "Engineering"
+        - label: "Other (describe below)"
+    validations:
+      required: true
+  - type: input
+    id: stakeholders_other
+    attributes:
+      label: "What team (other)"
+      placeholder: "(e.g. PR/Comms, Customer marketing, if doing something in a joint partnership, or with a customer for example)"
+  - type: checkboxes
+    id: topics
+    attributes:
+      label: "What topics will be covered?"
+      options:
+        - label: "Compliance and Governance"
+        - label: "Developer Experience and Happiness"
+        - label: "DevOps"
+        - label: "Enterprise"
+        - label: "Innersource and Opensource"
+        - label: "Machine Learning"
+        - label: "Security"
+        - label: "Other (describe below)"
+  - type: input
+    id: topics_other
+    attributes:
+      label: "Topic (other)"
+  - type: checkboxes
+    id: products
+    attributes:
+      label: "What product(s) does this cover?"
+      options:
+        - label: "Actions"
+        - label: "Codespaces"
+        - label: "GitHub Copilot"
+        - label: "Security"
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: "Additional Info"
+      description: "Any additional notes or context for this request (e.g. a reference to another issue)"
+      placeholder: "This has been raised with the blog team in #1234 and a copy of the draft is [here](https://docs.google.com/)."

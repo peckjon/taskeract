@@ -1,0 +1,38 @@
+on:
+  issues:
+    types:
+      - edited
+
+name: Process edit of issues labelled with "TASK" prefix
+
+jobs:
+  handle-issue-edited:
+    if: "${{ contains(github.event.issue.labels.*.name, 'TASK: ') }}"
+    runs-on: ubuntu-latest
+    defaults:
+      run: 
+        working-directory: .github/workflows
+    env:
+      REPOSITORY_NAME: 'peckjon/taskeract'
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v3
+    # set up Python, install packages (or restore cached as per https://github.com/actions/setup-python/pull/418)
+    - name: Set up Python3
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Restore cached python dependencies
+      uses: actions/cache@v3.2.5
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ env.pythonLocation }}-${{ hashFiles('taskeract/utils.py') }}-${{ hashFiles('taskeract/requirements.txt') }}
+    - name: Install Python packages
+      run: pip install -r taskeract/requirements.txt
+    # process issue
+    - name: Process issue
+      run: python taskeract/issue_edited.py
+    # log issue data
+    - name: show env
+      run: echo $ISSUE_DATA

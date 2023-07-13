@@ -1,0 +1,29 @@
+name: "Generic Task"
+description: "Tracking issue for a generic task"
+title: "[Generic Task] "
+labels: ["TASK: generic"]
+body:
+  - type: markdown
+    attributes:
+      value: In order to ensure the success of your project and to balance the team's responsibilities, we generally require 2+ weeks to plan new work. Please review [How We Work](../tree/master/guides/how-we-work.md), consider our [current workload](https://github.com/orgs/github/projects/6873), and contact us on [#enterprise-advocates](https://github.slack.com/archives/C041LMC2USU) if your needs are urgent.
+  - type: textarea
+    id: summary
+    attributes:
+      label: "Summary"
+      description: "one or two human readable sentences describing the work to be done:"
+      placeholder: "What work needs to be done?"
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Additional Information"
+      description: "Are there dependencies? Supporting documentation? Slack conversations to reference, or related issues?"
+      value: |
+        ## Dependencies
+
+        *list of known dependencies to complete this work*
+
+        ## Supporting Documentation
+
+        *links to documents, spreadsheets, issues, etc.*
+
+

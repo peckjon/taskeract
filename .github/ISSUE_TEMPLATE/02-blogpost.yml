@@ -1,0 +1,92 @@
+name: "Request a Blogpost"
+description: "Ask the team to produce a piece of text content such as a Blogpost or Newsletter"
+title: "Text Content Request"
+labels: ["TASK: blogpost"]
+assignees: []
+body:
+  - type: input
+    id: abstract
+    attributes:
+      label: "Description"
+    validations:
+      required: true
+  - type: input
+    id: target_date
+    attributes:
+      label: "Desired Publication Date"
+      description: "This should be written as YYYY-MM-DD"
+      placeholder: "2023-12-31"
+    validations:
+      required: true
+  - type: checkboxes
+    id: region
+    attributes:
+      label: "Region(s)"
+      options:
+        - label: "Global (not region specific)"
+        - label: "AMER"
+        - label: "APAC"
+        - label: "EMEA"
+    validations:
+      required: true
+  - type: checkboxes
+    id: platform
+    attributes:
+      label: "Platform(s)"
+      options:
+        - label: "Company Blog"
+        - label: "Industry Newsletter"
+        - label: "Other (describe below)"
+  - type: input
+    id: platform_other
+    attributes:
+      label: "Platform (other)"
+  - type: checkboxes
+    id: stakeholders
+    attributes:
+      label: "What team(s) is this request coming from / does it affect?"
+      options:
+        - label: "This team (internally generated)"
+        - label: "Sales"
+        - label: "Marketing"
+        - label: "Product"
+        - label: "Engineering"
+        - label: "Other (describe below)"
+    validations:
+      required: true
+  - type: input
+    id: stakeholders_other
+    attributes:
+      label: "What team (other)"
+  - type: checkboxes
+    id: topics
+    attributes:
+      label: "What topics will be covered?"
+      options:
+        - label: "Compliance and Governance"
+        - label: "Developer Experience and Happiness"
+        - label: "DevOps"
+        - label: "Enterprise"
+        - label: "Innersource and Opensource"
+        - label: "Machine Learning"
+        - label: "Security"
+        - label: "Other (describe below)"
+  - type: input
+    id: topics_other
+    attributes:
+      label: "Topic (other)"
+  - type: checkboxes
+    id: products
+    attributes:
+      label: "What product(s) does this cover?"
+      options:
+        - label: "Actions"
+        - label: "Codespaces"
+        - label: "GitHub Copilot"
+        - label: "Security"
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: "Additional Info"
+      description: "Any additional notes or context for this request (e.g. a reference to another issue)"
+      placeholder: "This has been raised with the blog team in #1234 and a copy of the draft is [here](https://docs.google.com/)."

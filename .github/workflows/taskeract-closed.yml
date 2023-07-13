@@ -1,0 +1,25 @@
+on:
+  issues:
+    types:
+      - closed
+
+name: Process closure of issues labelled with with "TASK" prefix
+
+jobs:
+  handle-issue-closed:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    if: "${{ contains(github.event.issue.labels.*.name, 'TASK: ') || github.event.inputs.issue_number }}"
+    steps:
+    - name: Label not-planned closures
+      uses: andymckay/labeler@1.0.4
+      with:
+        add-labels: "not planned"
+      if: "${{  github.event.issue.state == 'closed' && github.event.issue.state_reason == 'not_planned' }}"
+    - name: Unlabel standard closures
+      uses: andymckay/labeler@1.0.4
+      with:
+        remove-labels: "not planned"
+      if: "${{  github.event.issue.state == 'closed' && github.event.issue.state_reason != 'not_planned' }}"
+      
