@@ -19,11 +19,15 @@ This sample repo contains issue templates for three types of tasks ("generic", "
 
 1. Copy all files from the `.github` folder into your own repository's `.github` folder (or fork this repo if starting fresh)
 
-2. Inside `.github/workflows/taskeract-created.yml` and `taskeract-edited.yml`, change `REPOSITORY_NAME` to be your new repository
+1. In your new repository, [create the following labels](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels#creating-a-label): `TASK: generic`,`TASK: blogpost`,`TASK: video`
+    - pick any colors you prefer
+    - if you have changed the issue templates, create the labels defined in their "labels:" array instead.
 
-3. If you want to notify regional supervisors when new issues are created, add their handles to `SUPERVISORS_BY_REGION` inside `.github/workflows/taskeract/utils.py`
+1. Inside `.github/workflows/taskeract-created.yml` and `taskeract-edited.yml`, change `REPOSITORY_NAME` to be your new repository
 
-4. Decide whether to use the Project Board automation available in this tool. While [Project Boards](https://docs.github.com/en/issues/planning-and-tracking-with-projects) provide a [native mechanism](https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/adding-items-automatically) for auto-adding issues to projects, Taskeract gives you a bit more control over which issues are added, and allows you to set field values as you do.
+1. If you want to notify regional supervisors when new issues are created, add their handles to `SUPERVISORS_BY_REGION` inside `.github/workflows/taskeract/utils.py`
+
+1. Decide whether to use the Project Board automation available in this tool. While [Project Boards](https://docs.github.com/en/issues/planning-and-tracking-with-projects) provide a [native mechanism](https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/adding-items-automatically) for auto-adding issues to projects, Taskeract gives you a bit more control over which issues are added, and allows you to set field values as you do.
     - If you'll be using Taskeract's board automation:
       - create a secret in your repo called `ADD_TO_PROJECT_PAT` which contains a token capable of editing any project boards you'll be adding issues to
       - change the project URLs and field values in the "add to project and set project fields" section of `.github/workflows/taskeract-created.yml`
@@ -48,9 +52,10 @@ To add a field **_and_** create custom automation for that field:
 
 ## Adding a new task type
 
-First, add a new issue template
+First, add a new issue template.
 
 - for the automation to work, it **_must_** have a label starting with `TASK: ` such as `labels: ["TASK: workshop"]` (the space is mandatory)
+- don't forget to [create the label in your repo](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels#creating-a-label) as well
 
 Next, add a new `field-mapping-[TYPE].json` file inside `.github/workflows/taskeract/`
 
