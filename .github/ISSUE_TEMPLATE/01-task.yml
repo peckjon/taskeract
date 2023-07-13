@@ -3,9 +3,6 @@ description: "Tracking issue for a generic task"
 title: "[Generic Task] "
 labels: ["TASK: generic"]
 body:
-  - type: markdown
-    attributes:
-      value: In order to ensure the success of your project and to balance the team's responsibilities, we generally require 2+ weeks to plan new work. Please review [How We Work](../tree/master/guides/how-we-work.md), consider our [current workload](https://github.com/orgs/github/projects/6873), and contact us on [#enterprise-advocates](https://github.slack.com/archives/C041LMC2USU) if your needs are urgent.
   - type: textarea
     id: summary
     attributes:
