@@ -4,13 +4,11 @@ title: "Generic Task"
 labels: ["TASK: generic"]
 body:
   - type: textarea
-    id: summary
     attributes:
       label: "Summary"
       description: "one or two human readable sentences describing the work to be done:"
       placeholder: "What work needs to be done?"
   - type: textarea
-    id: additional_info
     attributes:
       label: "Additional Information"
       description: "Are there dependencies? Supporting documentation? Slack conversations to reference, or related issues?"

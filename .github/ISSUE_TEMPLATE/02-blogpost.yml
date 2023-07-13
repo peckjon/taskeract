@@ -5,13 +5,11 @@ labels: ["TASK: blogpost"]
 assignees: []
 body:
   - type: input
-    id: abstract
     attributes:
       label: "Description"
     validations:
       required: true
   - type: input
-    id: target_date
     attributes:
       label: "Desired Publication Date"
       description: "This should be written as YYYY-MM-DD"
@@ -19,7 +17,6 @@ body:
     validations:
       required: true
   - type: checkboxes
-    id: region
     attributes:
       label: "Region(s)"
       options:
@@ -30,7 +27,6 @@ body:
     validations:
       required: true
   - type: checkboxes
-    id: platform
     attributes:
       label: "Platform(s)"
       options:
@@ -38,11 +34,9 @@ body:
         - label: "Industry Newsletter"
         - label: "Other (describe below)"
   - type: input
-    id: platform_other
     attributes:
       label: "Platform (other)"
   - type: checkboxes
-    id: stakeholders
     attributes:
       label: "What team(s) is this request coming from / does it affect?"
       options:
@@ -55,11 +49,9 @@ body:
     validations:
       required: true
   - type: input
-    id: stakeholders_other
     attributes:
       label: "What team (other)"
   - type: checkboxes
-    id: topics
     attributes:
       label: "What topics will be covered?"
       options:
@@ -72,11 +64,9 @@ body:
         - label: "Security"
         - label: "Other (describe below)"
   - type: input
-    id: topics_other
     attributes:
       label: "Topic (other)"
   - type: checkboxes
-    id: products
     attributes:
       label: "What product(s) does this cover?"
       options:
@@ -85,7 +75,6 @@ body:
         - label: "GitHub Copilot"
         - label: "Security"
   - type: textarea
-    id: additional_notes
     attributes:
       label: "Additional Info"
       description: "Any additional notes or context for this request (e.g. a reference to another issue)"
