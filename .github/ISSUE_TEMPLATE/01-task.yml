@@ -1,6 +1,6 @@
 name: "Generic Task"
 description: "Tracking issue for a generic task"
-title: "[Generic Task] "
+title: "Generic Task"
 labels: ["TASK: generic"]
 body:
   - type: textarea
@@ -14,13 +14,5 @@ body:
     attributes:
       label: "Additional Information"
       description: "Are there dependencies? Supporting documentation? Slack conversations to reference, or related issues?"
-      value: |
-        ## Dependencies
-
-        *list of known dependencies to complete this work*
-
-        ## Supporting Documentation
-
-        *links to documents, spreadsheets, issues, etc.*
-
+      placeholder: "Add any additional information here."
 
