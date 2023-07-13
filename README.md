@@ -25,6 +25,7 @@ If you _won't_ be using Project Boards:
 - adds labels to issues based on the following predefined fields: `date`, `topic`, `product`, `region`, `stakeholders`
 - notifies supervisors (or whoever you want to triage your issues) based on the issue's `region` field
   - you can define who these supervisors are by setting their handles in `SUPERVISORS_BY_REGION` inside `.github/workflows/taskeract/utils.py`
+  - you can change the assignments to be based on a different field, such as `product`, by editing `notify_supervisors` in `utils.py`
 - adds a "DRI" field to the **_body_** of the issue
   - this field does not appear until **_after_** the issue has been created, because the people _requesting_ the work should not necessarily _assign_ the work
   - once filled out, the DRI will be automatically added as an assignee
@@ -44,7 +45,7 @@ To add a field **_and_** create custom automation for that field:
   - the "variable" should be a new unique value (preferably [snake_case](https://en.wikipedia.org/wiki/Snake_case))
 - add a function to `.github/workflows/taskeract/utils.py` (see `assign_labels_topic` as an example... your new variable name from the prior step would replace `topics`)
 - call this function from `.github/workflows/taskeract/issue_created.py` and/or `issue_edited.py`
-  - if you'll be creating a new label from this field, be sure to add a `LABEL_PREFIX_[fieldname] = '[fieldname]: '` near the top of `utils.py`, and another entry inside `LABEL_COLORS` just below it.
+  - if you'll be creating a new label from this field, be sure to add a `LABEL_PREFIX_[fieldname] = '[fieldname]: '` (the trailing space is mandatory) near the top of `utils.py`, and another entry inside `LABEL_COLORS` just below it.
 
 ## Adding a new task type
 

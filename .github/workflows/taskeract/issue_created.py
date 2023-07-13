@@ -17,7 +17,7 @@ assign_labels_stakeholder(issue, fields)
 append_dri_to_issue_body(issue)
 
 # notify regional supervisors
-notify_regional_supervisors(issue, fields)
+notify_supervisors(issue, fields)
 
 # export ISSUE_DATA to github env
 dump_issue_data_to_github_env(fields)

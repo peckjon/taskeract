@@ -154,6 +154,23 @@ def parse_issue_body_to_fields(issue):
     return body_vars
 
 
+# create and assign a label for any text-based field
+def assign_labels_string_field(issue, issue_body_vars, fieldname):
+    if fieldname in issue_body_vars:
+        labels_to_add = []
+        try:
+            for line in issue_body_vars[fieldname].splitlines():
+                label = get_or_create_label(f"{LABEL_PREFIXES[fieldname]}{line.split(' (')[0]}", LABEL_COLORS[fieldname])
+                labels_to_add.append(label)
+            remove_labels_with_prefix(issue, LABEL_PREFIXES[fieldname], labels_to_add)
+            for label in labels_to_add:
+                if not label in issue.labels:
+                    issue.add_to_labels(label)
+                    print(f'Labelled: {label.name}')
+        except Exception as ex:
+            print(f"WARNING: unable to create '{fieldname}' label for {issue_body_vars[fieldname]}: {ex}")
+
+
 # create and assign a label based on the date of the event
 def assign_labels_date(issue, issue_body_vars):
     if 'date' in issue_body_vars:
@@ -169,67 +186,19 @@ def assign_labels_date(issue, issue_body_vars):
 
 
 def assign_labels_topic(issue, issue_body_vars):
-    if 'topic' in issue_body_vars:
-        labels_to_add = []
-        try:
-            for line in issue_body_vars['topic'].splitlines():
-                label = get_or_create_label(f"{LABEL_PREFIXES['topic']}{line.split(' (')[0]}", LABEL_COLORS['topic'])
-                labels_to_add.append(label)
-            remove_labels_with_prefix(issue, LABEL_PREFIXES['topic'], labels_to_add)
-            for label in labels_to_add:
-                if not label in issue.labels:
-                    issue.add_to_labels(label)
-                    print(f'Labelled: {label.name}')
-        except Exception as ex:
-            print(f"WARNING: unable to create TOPIC label for {issue_body_vars['topic']}: {ex}")
+    assign_labels_string_field(issue, issue_body_vars, 'topic')
 
 
 def assign_labels_product(issue, issue_body_vars):
-    if 'product' in issue_body_vars:
-        labels_to_add = []
-        try:
-            for line in issue_body_vars['product'].splitlines():
-                label = get_or_create_label(f"{LABEL_PREFIXES['product']}{line.split(' (')[0]}", LABEL_COLORS['product'])
-                labels_to_add.append(label)
-            remove_labels_with_prefix(issue, LABEL_PREFIXES['product'], labels_to_add)
-            for label in labels_to_add:
-                if not label in issue.labels:
-                    issue.add_to_labels(label)
-                    print(f'Labelled: {label.name}')
-        except Exception as ex:
-            print(f"WARNING: unable to create PRODUCT label for {issue_body_vars['product']}: {ex}")
+    assign_labels_string_field(issue, issue_body_vars, 'product')
 
 
 def assign_labels_region(issue, issue_body_vars):
-    if 'region' in issue_body_vars:
-        labels_to_add = []
-        try:
-            for line in issue_body_vars['region'].splitlines():
-                label = get_or_create_label(f"{LABEL_PREFIXES['region']}{line.split(' (')[0]}", LABEL_COLORS['region'])
-                labels_to_add.append(label)
-            remove_labels_with_prefix(issue, LABEL_PREFIXES['region'], labels_to_add)
-            for label in labels_to_add:
-                if not label in issue.labels:
-                    issue.add_to_labels(label)
-                    print(f'Labelled: {label.name}')
-        except Exception as ex:
-            print(f"WARNING: unable to create REGION label for {issue_body_vars['region']}: {ex}")
+    assign_labels_string_field(issue, issue_body_vars, 'region')
 
 
 def assign_labels_stakeholder(issue, issue_body_vars):
-    if 'stakeholder' in issue_body_vars:
-        labels_to_add = []
-        try:
-            for line in issue_body_vars['stakeholder'].splitlines():
-                label = get_or_create_label(f"{LABEL_PREFIXES['stakeholder']}{line.split(' (')[0]}", LABEL_COLORS['stakeholder'])
-                labels_to_add.append(label)
-            remove_labels_with_prefix(issue, LABEL_PREFIXES['stakeholder'], labels_to_add)
-            for label in labels_to_add:
-                if not label in issue.labels:
-                    issue.add_to_labels(label)
-                    print(f'Labelled: {label.name}')
-        except Exception as ex:
-            print(f"WARNING: unable to create STAKEHOLDER label for {issue_body_vars['stakeholder']}: {ex}")
+    assign_labels_string_field(issue, issue_body_vars, 'stakeholder')
 
 
 def assign_labels_dri(issue, issue_body_vars):
@@ -246,13 +215,13 @@ def assign_labels_dri(issue, issue_body_vars):
                 if not label in issue.labels:
                     issue.add_to_labels(label)
                     print(f'Labelled: {label.name}')
-                    issue.add_to_dris(label.name[len(LABEL_PREFIXES['dri']):])
+                    issue.add_to_assignees(label.name[len(LABEL_PREFIXES['dri']):])
                     print(f"Assigned: {label.name[len(LABEL_PREFIXES['dri']):]}")
         except Exception as ex:
-            print(f"WARNING: unable to create dri labels for {dri_handles}: {ex}")
+            print(f"WARNING: unable to create 'dri' labels or assignments for {dri_handles}: {ex}")
 
 
-def notify_regional_supervisors(issue, issue_body_vars):
+def notify_supervisors(issue, issue_body_vars):
     handles_to_notify = []
     if 'region' in issue_body_vars:
         for line in issue_body_vars['region'].splitlines():
