@@ -7,7 +7,7 @@ name: Process edit of issues labelled with "TASK" prefix
 
 jobs:
   handle-issue-edited:
-    if: "${{ contains(github.event.issue.labels.*.name, 'TASK: ') }}"
+    if: "${{ contains(join(github.event.issue.labels.*.name), 'TASK: ') }}"
     runs-on: ubuntu-latest
     defaults:
       run: 

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    if: "${{ contains(github.event.issue.labels.*.name, 'TASK: ') || github.event.inputs.issue_number }}"
+    if: "${{ contains(join(github.event.issue.labels.*.name), 'TASK: ') }}"
     steps:
     - name: Label not-planned closures
       uses: andymckay/labeler@1.0.4
