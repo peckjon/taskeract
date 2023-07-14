@@ -1,3 +1,5 @@
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Tesseract-1K.gif" width="100" height="100" alt="A tesseract" />
+
 # Taskeract: automate task ingestion, issue creation, tagging, assignment, and projct board connections
 
 Taskeract helps your team quickly receive, tag, triage, and track issues.
