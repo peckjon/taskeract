@@ -31,7 +31,7 @@ This sample repo contains issue templates for three types of tasks ("generic", "
 
 1. Decide whether to use the Project Board automation available in this tool. While [Project Boards](https://docs.github.com/en/issues/planning-and-tracking-with-projects) provide a [native mechanism](https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/adding-items-automatically) for auto-adding issues to projects, Taskeract gives you a bit more control over which issues are added, and allows you to set field values as you do.
     - If you'll be using Taskeract's board automation:
-      - create a secret in your repo called `ADD_TO_PROJECT_PAT` which contains a token capable of editing any project boards you'll be adding issues to (usually, a "classic"" token with "Full control of projects")
+      - [create a secret](https://github.com/settings/tokens) in your repo called `ADD_TO_PROJECT_PAT` which contains a token capable of editing any project boards you'll be adding issues to (usually, a "classic"" token with "Full control of private repositories" and "Full control of projects")
       - change the project URLs and field values in the "add to project and set project fields" section of `.github/workflows/taskeract-created.yml`
     - If you _won't_ be using Project Boards, or you'll be using their native mechanism for adding issues:
       - delete the section under "add to project and set project fields" in `.github/workflows/taskeract-created.yml`
