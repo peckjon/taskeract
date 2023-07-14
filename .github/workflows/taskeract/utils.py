@@ -42,7 +42,7 @@ from dateutil.parser import parse as dateparse
 from github import Github
 
 def get_env_or_throw(env_var):
-    value = get_env_or_throw(env_var)
+    value = os.getenv(env_var)
     if not value:
         raise Exception(f'Environment variable {env_var} not set')
     return value
