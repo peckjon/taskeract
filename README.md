@@ -19,7 +19,9 @@ This sample repo contains issue templates for three types of tasks ("generic", "
 
 1. Copy all files from the `.github` folder into your own repository's `.github` folder (or fork this repo if starting fresh)
 
-1. In your new repository, [create the following labels](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels#creating-a-label): `TASK: generic`,`TASK: blogpost`,`TASK: video`
+1. In your repository, go to Settings > Actions > General and set "Workflow permissions" to "Read and write permissions". If this is too permissive, you can instead create a PAT under Secrets, and edit all `tesseract-*.yml` workflows to use that secret instead of `secrets.GITHUB_TOKEN``
+
+1. In your repository, [create the following labels](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels#creating-a-label): `TASK: generic`,`TASK: blogpost`,`TASK: video`
     - pick any colors you prefer
     - if you have changed the issue templates, create the labels defined in their "labels:" array instead.
 
