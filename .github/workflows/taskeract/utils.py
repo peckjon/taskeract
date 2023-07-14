@@ -2,7 +2,7 @@
 
 # GitHub handles which should be notified when an issue is created
 SUPERVISORS_BY_REGION = {
-    'Global': ['peckjon'], # do not include '@', e.g. ['username1', 'username2']
+    'Global': [], # do not include '@', e.g. ['username1', 'username2']
     'AMER': [],
     'APAC': [],
     'EMEA': []
