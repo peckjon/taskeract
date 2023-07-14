@@ -1,4 +1,4 @@
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Tesseract-1K.gif" width="100" height="100" alt="A tesseract" />
+<p align="center"><img src="tesseract.png" width="100" height="100" alt="A tesseract" /></p>
 
 # Taskeract: automate task ingestion, issue creation, tagging, assignment, and projct board connections
 
